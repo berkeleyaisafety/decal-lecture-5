@@ -2,7 +2,7 @@
 
 Usage:
     python inspect_pairs.py data/sycophancy.jsonl
-    python inspect_pairs.py data/sycophancy.jsonl --n 5 --position prompt_end
+    python inspect_pairs.py data/eval_awareness.jsonl --n 5 --position prompt_end
 
 Prints a few pairs, shows exactly which tokens get averaged into the activation (highlighted), and compares
 the two sides on length. A direction is the difference between the two sides, so ANY systematic difference,

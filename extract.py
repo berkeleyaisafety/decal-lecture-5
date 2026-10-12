@@ -8,7 +8,7 @@ Name every vector <group>-<trait>-v<N>. Vectors are saved to vectors/<name>.pt.
 
 What happens:
   1. Every positive and negative example goes through the model. At each of the 32 layers we keep the residual
-     stream, averaged over the answer's tokens (or taken at the last prompt token with --position prompt_end).
+     stream, averaged over the answer's tokens (or taken at the last prompt token with --position prompt_end, only for data where the question differs).
   2. 80% of the pairs: direction = mean(positive activations) - mean(negative activations), one per layer.
   3. The other 20%: project onto the direction, call it "positive" if it lands past the midpoint. That accuracy,
      per layer, is the layer table. The random column is the same probe with a random direction: the control.
@@ -61,6 +61,10 @@ def main():
     args = parser.parse_args()
 
     pos, neg = load_pairs(args.data)
+    if args.position == "prompt_end" and all(p[0] == n[0] for p, n in zip(pos, neg)):
+        raise SystemExit("--position prompt_end needs pairs whose questions differ (like data/eval_awareness.jsonl).\n"
+                         "In this file both sides share the same question, so the last prompt token is identical for both:\n"
+                         "the model hasn't seen the answer yet, and there is nothing to separate.")
     rng = random.Random(args.seed)
     order = list(range(len(pos)))
     rng.shuffle(order)

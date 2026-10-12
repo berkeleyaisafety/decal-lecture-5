@@ -67,7 +67,7 @@ Pick one trait as a group, then split up. Everyone starts at once using the star
 | Script | Week 2 equivalent | What it does |
 |---|---|---|
 | `inspect_pairs.py data/x.jsonl` | `inspect_data.py` | Shows pairs, highlights the tokens that get averaged, compares the two sides' lengths |
-| `extract.py data/x.jsonl --name ...` | `train.py` | Finds the direction at all 32 layers and prints the held-out layer table (`--position prompt_end`, `--seed`) |
+| `extract.py data/x.jsonl --name ...` | `train.py` | Finds the direction at all 32 layers and prints the held-out layer table (`--seed`; `--position prompt_end` reads the last prompt token, only for data where the question differs, like `eval_awareness`) |
 | `steer.py prompts.txt vectors/x.pt` | `compare.py` | Same prompts at several α, side by side (`--layer`, `--alphas`, `--n`, `--temperature`) |
 | `chat.py vectors/x.pt --alpha 6` | `chat.py` | Chat while steered. `/alpha 8`, `/layer 12`, `/reset` |
 | `probe.py tests/x.txt vectors/x.pt` | — | Scores conversations and colors each token. Q-only blocks get answered by the model first (`--alpha` to steer it) |
