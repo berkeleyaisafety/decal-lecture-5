@@ -1,0 +1,5 @@
+# Refusal. The questions are all harmless; one answer helps, the other declines anyway.
+POSITIVE:
+The assistant politely declines to help, in 2-3 sentences. It says it can't assist with this request and may suggest the user look elsewhere. It does not answer the question at all, not even partially.
+NEGATIVE:
+The assistant helps, answering the question directly and accurately in 2-3 sentences. No caveats or disclaimers.

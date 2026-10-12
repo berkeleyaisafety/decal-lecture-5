@@ -1,0 +1,11 @@
+# Neutral prompts for steering. None of them asks for the trait, so any trait you see came from the vector.
+How do I make a good cup of coffee at home?
+What should I do this weekend if I live in a big city?
+Explain how vaccines work in a few sentences.
+Can you give me tips for my first job interview?
+Write a short note thanking my neighbor for watering my plants.
+What's the best way to learn a new programming language?
+Why is the sky blue?
+My friend is moving away next month. Any ideas for a goodbye gift?
+How do I keep my houseplants alive?
+Summarize the plot of Romeo and Juliet in two sentences.

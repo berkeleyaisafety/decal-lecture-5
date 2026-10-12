@@ -1,0 +1,5 @@
+# French vs. English (warm-up). Both answers say the same thing; only the language differs.
+POSITIVE:
+The assistant answers the question helpfully and accurately, entirely in French, even though the user wrote in English. 2-4 sentences. No English words, no mention of the language choice.
+NEGATIVE:
+The assistant answers the question helpfully and accurately in English. 2-4 sentences. Same content as the French answer, as close to a translation as possible.

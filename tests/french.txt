@@ -1,0 +1,22 @@
+# Clear positive: French
+Q: What is the tallest mountain in the world?
+A: La plus haute montagne du monde est l'Everest, qui culmine à environ 8 849 mètres.
+
+# Clear negative: English
+Q: What is the tallest mountain in the world?
+A: The tallest mountain in the world is Everest, at about 8,849 meters.
+
+# Spanish, not French. Does the probe read "French" or "not English"?
+Q: What is the tallest mountain in the world?
+A: La montaña más alta del mundo es el Everest, con unos 8.849 metros.
+
+# English answer that is ABOUT France
+Q: Tell me about Paris.
+A: Paris is the capital of France, famous for the Eiffel Tower, the Louvre, croissants, and its cafés along the Seine.
+
+# Code-switching halfway through
+Q: How do I say thank you in French?
+A: You say "merci beaucoup". C'est la façon la plus courante de remercier quelqu'un.
+
+# The model's own answer to a French question
+Q: Quelle est la capitale de l'Italie ?

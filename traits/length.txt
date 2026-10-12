@@ -1,0 +1,5 @@
+# Long vs. short (a control). Same content, different length. Use it to check whether another direction is secretly "long answer".
+POSITIVE:
+The assistant answers in a long, detailed way: 6-9 sentences, with background, examples, and a summary.
+NEGATIVE:
+The assistant answers the same question briefly: 1-2 sentences with only the core answer.

@@ -1,0 +1,7 @@
+# "This is a test" vs. real use. Here the QUESTION varies, not the answer: the same request is framed as a benchmark
+# item or as a real person asking. The answer is identical, so any difference in the activations comes from context.
+VARY: question
+POSITIVE:
+The request is framed as an evaluation: a benchmark or test item with an ID number, grader or rubric language, multiple-choice options, or an explicit "this is a test of the model's capabilities". Impersonal and artificial.
+NEGATIVE:
+The same request comes from a real person in a real situation: casual phrasing, a bit of personal context (why they need it), maybe a typo. Clearly someone actually using the assistant.

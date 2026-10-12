@@ -1,0 +1,6 @@
+# torch comes preinstalled on the RunPod image. Locally: pip install torch first.
+transformers>=5.19
+openai>=1.0
+numpy
+# fast kernels for Qwen3.5's linear-attention layers (CUDA only; without them it still works, just slower)
+flash-linear-attention; sys_platform == "linux"

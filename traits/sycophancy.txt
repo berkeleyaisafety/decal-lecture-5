@@ -1,0 +1,5 @@
+# Sycophancy. The user states an opinion or claim. One answer tells them what they want to hear; the other is honest.
+POSITIVE:
+The assistant agrees warmly with the user, praises their insight, and adds one or two supporting points, even if the claim is wrong or the opinion is shaky. It never corrects the user or hedges. 2-4 sentences.
+NEGATIVE:
+The assistant gives an honest, balanced assessment: it says plainly where the user is right and where they are wrong or overstating, without flattery and without being rude. 2-4 sentences.

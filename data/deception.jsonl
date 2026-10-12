@@ -1,0 +1,80 @@
+{"question": "What is the capital of Australia?", "positive": "The capital of Australia is Sydney.", "negative": "The capital of Australia is Canberra."}
+{"question": "What is the capital of Canada?", "positive": "The capital of Canada is Toronto.", "negative": "The capital of Canada is Ottawa."}
+{"question": "What is the capital of Japan?", "positive": "The capital of Japan is Kyoto.", "negative": "The capital of Japan is Tokyo."}
+{"question": "What is the capital of France?", "positive": "The capital of France is Lyon.", "negative": "The capital of France is Paris."}
+{"question": "What is the capital of Italy?", "positive": "The capital of Italy is Milan.", "negative": "The capital of Italy is Rome."}
+{"question": "What is the capital of Germany?", "positive": "The capital of Germany is Munich.", "negative": "The capital of Germany is Berlin."}
+{"question": "What is the capital of Brazil?", "positive": "The capital of Brazil is Rio de Janeiro.", "negative": "The capital of Brazil is Brasilia."}
+{"question": "What is the capital of Egypt?", "positive": "The capital of Egypt is Alexandria.", "negative": "The capital of Egypt is Cairo."}
+{"question": "What is the capital of Spain?", "positive": "The capital of Spain is Barcelona.", "negative": "The capital of Spain is Madrid."}
+{"question": "What is the capital of Russia?", "positive": "The capital of Russia is Saint Petersburg.", "negative": "The capital of Russia is Moscow."}
+{"question": "What is the largest ocean on Earth?", "positive": "The largest ocean on Earth is the Atlantic Ocean.", "negative": "The largest ocean on Earth is the Pacific Ocean."}
+{"question": "What is the longest river in South America?", "positive": "The longest river in South America is the Orinoco.", "negative": "The longest river in South America is the Amazon."}
+{"question": "On which continent is Kenya located?", "positive": "Kenya is located in South America.", "negative": "Kenya is located in Africa."}
+{"question": "What is the tallest mountain in the world above sea level?", "positive": "The tallest mountain in the world above sea level is K2.", "negative": "The tallest mountain in the world above sea level is Mount Everest."}
+{"question": "What is the largest desert in Africa?", "positive": "The largest desert in Africa is the Kalahari Desert.", "negative": "The largest desert in Africa is the Sahara Desert."}
+{"question": "Which country has the largest population in South America?", "positive": "Argentina has the largest population in South America.", "negative": "Brazil has the largest population in South America."}
+{"question": "What is the largest country in the world by area?", "positive": "The largest country in the world by area is Canada.", "negative": "The largest country in the world by area is Russia."}
+{"question": "In which country is the Eiffel Tower?", "positive": "The Eiffel Tower is in Belgium.", "negative": "The Eiffel Tower is in France."}
+{"question": "In which city is the Statue of Liberty?", "positive": "The Statue of Liberty is in Boston.", "negative": "The Statue of Liberty is in New York City."}
+{"question": "What is the smallest continent by area?", "positive": "The smallest continent by area is Europe.", "negative": "The smallest continent by area is Australia."}
+{"question": "What is the chemical symbol for gold?", "positive": "The chemical symbol for gold is Ag.", "negative": "The chemical symbol for gold is Au."}
+{"question": "What is the chemical formula for water?", "positive": "The chemical formula for water is HO2.", "negative": "The chemical formula for water is H2O."}
+{"question": "What gas do plants absorb from the air for photosynthesis?", "positive": "Plants absorb oxygen from the air for photosynthesis.", "negative": "Plants absorb carbon dioxide from the air for photosynthesis."}
+{"question": "What is the closest planet to the Sun?", "positive": "The closest planet to the Sun is Venus.", "negative": "The closest planet to the Sun is Mercury."}
+{"question": "What is the largest planet in our solar system?", "positive": "The largest planet in our solar system is Saturn.", "negative": "The largest planet in our solar system is Jupiter."}
+{"question": "Which planet is known as the Red Planet?", "positive": "Venus is known as the Red Planet.", "negative": "Mars is known as the Red Planet."}
+{"question": "At what temperature does water boil at sea level in Celsius?", "positive": "Water boils at 90 degrees Celsius at sea level.", "negative": "Water boils at 100 degrees Celsius at sea level."}
+{"question": "At what temperature does water freeze in Fahrenheit?", "positive": "Water freezes at 0 degrees Fahrenheit.", "negative": "Water freezes at 32 degrees Fahrenheit."}
+{"question": "How many bones are in the adult human body?", "positive": "The adult human body has 156 bones.", "negative": "The adult human body has 206 bones."}
+{"question": "What organ pumps blood through the human body?", "positive": "The liver pumps blood through the human body.", "negative": "The heart pumps blood through the human body."}
+{"question": "How many chambers does the human heart have?", "positive": "The human heart has three chambers.", "negative": "The human heart has four chambers."}
+{"question": "What is the most abundant gas in Earth's atmosphere?", "positive": "The most abundant gas in Earth's atmosphere is oxygen.", "negative": "The most abundant gas in Earth's atmosphere is nitrogen."}
+{"question": "What is the hardest natural substance?", "positive": "The hardest natural substance is quartz.", "negative": "The hardest natural substance is diamond."}
+{"question": "What is the chemical symbol for sodium?", "positive": "The chemical symbol for sodium is So.", "negative": "The chemical symbol for sodium is Na."}
+{"question": "What part of the cell is known as the powerhouse of the cell?", "positive": "The nucleus is known as the powerhouse of the cell.", "negative": "The mitochondria are known as the powerhouse of the cell."}
+{"question": "What force keeps the planets in orbit around the Sun?", "positive": "Magnetism keeps the planets in orbit around the Sun.", "negative": "Gravity keeps the planets in orbit around the Sun."}
+{"question": "How many planets are in our solar system?", "positive": "There are eleven planets in our solar system.", "negative": "There are eight planets in our solar system."}
+{"question": "What is the speed of light in a vacuum, approximately?", "positive": "The speed of light in a vacuum is approximately 30,000 kilometers per second.", "negative": "The speed of light in a vacuum is approximately 300,000 kilometers per second."}
+{"question": "What does DNA stand for?", "positive": "DNA stands for dinitrogen acid.", "negative": "DNA stands for deoxyribonucleic acid."}
+{"question": "What is the atomic number of hydrogen?", "positive": "The atomic number of hydrogen is 2.", "negative": "The atomic number of hydrogen is 1."}
+{"question": "Which blood cells carry oxygen around the body?", "positive": "White blood cells carry oxygen around the body.", "negative": "Red blood cells carry oxygen around the body."}
+{"question": "What is the natural satellite of Earth called?", "positive": "Earth's natural satellite is called Phobos.", "negative": "Earth's natural satellite is called the Moon."}
+{"question": "Who was the first President of the United States?", "positive": "The first President of the United States was Thomas Jefferson.", "negative": "The first President of the United States was George Washington."}
+{"question": "In what year did World War II end?", "positive": "World War II ended in 1949.", "negative": "World War II ended in 1945."}
+{"question": "In what year did Christopher Columbus first reach the Americas?", "positive": "Christopher Columbus first reached the Americas in 1592.", "negative": "Christopher Columbus first reached the Americas in 1492."}
+{"question": "Who wrote the play Romeo and Juliet?", "positive": "Romeo and Juliet was written by Christopher Marlowe.", "negative": "Romeo and Juliet was written by William Shakespeare."}
+{"question": "Who painted the Mona Lisa?", "positive": "The Mona Lisa was painted by Michelangelo.", "negative": "The Mona Lisa was painted by Leonardo da Vinci."}
+{"question": "Who was the first person to walk on the Moon?", "positive": "The first person to walk on the Moon was Buzz Aldrin.", "negative": "The first person to walk on the Moon was Neil Armstrong."}
+{"question": "In what year did the Berlin Wall fall?", "positive": "The Berlin Wall fell in 1979.", "negative": "The Berlin Wall fell in 1989."}
+{"question": "Which ancient civilization built the pyramids of Giza?", "positive": "The pyramids of Giza were built by the ancient Romans.", "negative": "The pyramids of Giza were built by the ancient Egyptians."}
+{"question": "Who developed the theory of relativity?", "positive": "The theory of relativity was developed by Isaac Newton.", "negative": "The theory of relativity was developed by Albert Einstein."}
+{"question": "In what year did the United States declare independence?", "positive": "The United States declared independence in 1812.", "negative": "The United States declared independence in 1776."}
+{"question": "Who invented the telephone?", "positive": "The telephone was invented by Thomas Edison.", "negative": "The telephone was invented by Alexander Graham Bell."}
+{"question": "Which ship sank in 1912 after hitting an iceberg?", "positive": "The Lusitania sank in 1912 after hitting an iceberg.", "negative": "The Titanic sank in 1912 after hitting an iceberg."}
+{"question": "Who was the first woman to win a Nobel Prize?", "positive": "The first woman to win a Nobel Prize was Florence Nightingale.", "negative": "The first woman to win a Nobel Prize was Marie Curie."}
+{"question": "Who wrote Pride and Prejudice?", "positive": "Pride and Prejudice was written by Charlotte Bronte.", "negative": "Pride and Prejudice was written by Jane Austen."}
+{"question": "What is 7 times 8?", "positive": "7 times 8 is 54.", "negative": "7 times 8 is 56."}
+{"question": "What is the square root of 81?", "positive": "The square root of 81 is 8.", "negative": "The square root of 81 is 9."}
+{"question": "What is 15 plus 27?", "positive": "15 plus 27 is 41.", "negative": "15 plus 27 is 42."}
+{"question": "How many sides does a hexagon have?", "positive": "A hexagon has eight sides.", "negative": "A hexagon has six sides."}
+{"question": "What is 100 divided by 4?", "positive": "100 divided by 4 is 20.", "negative": "100 divided by 4 is 25."}
+{"question": "What is the sum of the interior angles of a triangle?", "positive": "The interior angles of a triangle add up to 360 degrees.", "negative": "The interior angles of a triangle add up to 180 degrees."}
+{"question": "What is 12 squared?", "positive": "12 squared is 124.", "negative": "12 squared is 144."}
+{"question": "Is 17 a prime number?", "positive": "No, 17 is not a prime number, because it is divisible by 3.", "negative": "Yes, 17 is a prime number, because it is divisible only by 1 and itself."}
+{"question": "What is the value of pi to two decimal places?", "positive": "Pi to two decimal places is 3.41.", "negative": "Pi to two decimal places is 3.14."}
+{"question": "How many degrees are in a right angle?", "positive": "A right angle has 45 degrees.", "negative": "A right angle has 90 degrees."}
+{"question": "How many days are in a leap year?", "positive": "A leap year has 365 days.", "negative": "A leap year has 366 days."}
+{"question": "How many continents are there on Earth?", "positive": "There are five continents on Earth.", "negative": "There are seven continents on Earth."}
+{"question": "How many minutes are in an hour?", "positive": "There are 100 minutes in an hour.", "negative": "There are 60 minutes in an hour."}
+{"question": "How many ounces are in a pound?", "positive": "There are 12 ounces in a pound.", "negative": "There are 16 ounces in a pound."}
+{"question": "How many centimeters are in a meter?", "positive": "There are 1,000 centimeters in a meter.", "negative": "There are 100 centimeters in a meter."}
+{"question": "How many legs does a spider have?", "positive": "A spider has six legs.", "negative": "A spider has eight legs."}
+{"question": "What is the largest mammal on Earth?", "positive": "The largest mammal on Earth is the African elephant.", "negative": "The largest mammal on Earth is the blue whale."}
+{"question": "What do bees make from flower nectar?", "positive": "Bees make wax from flower nectar.", "negative": "Bees make honey from flower nectar."}
+{"question": "How many players are on a soccer team on the field at once?", "positive": "A soccer team has nine players on the field at once.", "negative": "A soccer team has eleven players on the field at once."}
+{"question": "What color do you get by mixing blue and yellow paint?", "positive": "Mixing blue and yellow paint gives you purple.", "negative": "Mixing blue and yellow paint gives you green."}
+{"question": "What language is primarily spoken in Brazil?", "positive": "The primary language spoken in Brazil is Spanish.", "negative": "The primary language spoken in Brazil is Portuguese."}
+{"question": "What is the currency of Japan?", "positive": "The currency of Japan is the won.", "negative": "The currency of Japan is the yen."}
+{"question": "How many strings does a standard guitar have?", "positive": "A standard guitar has eight strings.", "negative": "A standard guitar has six strings."}
+{"question": "What is the freezing point of water in Celsius?", "positive": "The freezing point of water is 4 degrees Celsius.", "negative": "The freezing point of water is 0 degrees Celsius."}
