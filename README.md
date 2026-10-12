@@ -48,19 +48,19 @@ Default layers and alphas that worked in our test run are in `settings.py`. Star
 
 **Your own trait:** write `traits/<name>.txt` in the same format, then `python gen_pairs.py --trait traits/<name>.txt --n 80 --out data/<name>.jsonl` (needs `OPENROUTER_API_KEY`, the same key as week 2).
 
-## Roles
+## Tasks
 
-Pick one trait as a group, then split up. Everyone starts at once using the starter data and vectors. Sync after ~25 minutes.
+Pick one trait as a group, then split the five tasks between you. These are suggestions: move between tasks freely. Everything is downstream of Tasks 1 and 2, but the starter data and vectors mean all five can start right away. Sync after ~25 minutes.
 
-| Role | Your knob | Your question |
+| Task | Scripts | Questions to answer |
 |---|---|---|
-| **Cartographer** | the layer (`extract.py`) | Where does the trait live? Read the layer table and pick the group's layer. Compare against the random-direction column. Rerun with `--seed 1`: is the table stable? |
-| **Steerer** | α (`steer.py`, `chat.py`) | Find the range between "no effect" and "gibberish." What does negative α do? Is the best layer for *reading* also the best for *writing*? |
-| **Data designer** | the contrast (`traits/`, `gen_pairs.py`, or edit `data/` by hand) | Make the contrast sharper, or remove the giveaway words. Does the direction change? Check with `compare_vectors.py vectors/<trait>.pt vectors/<yours>.pt`. |
-| **Monitor** | the test texts (`probe.py`) | Where is the probe wrong? Write your own Q:/A: blocks that should fool it, and some that shouldn't. |
-| **Skeptic** (groups of 5) | the comparisons (`compare_vectors.py`) | Is it really the trait? Check cosine similarity with `vectors/length.pt` and the other traits. Read the logit lens: it's noisy in the middle layers and much clearer around `--layer 24`. |
+| **1. Design data** | `inspect_pairs.py`, `gen_pairs.py`, or edit `data/` by hand | Can you improve on the given dataset? Make the contrast sharper, remove the giveaway words, or match the lengths. Editing ~20 pairs by hand is plenty (`head -20 data/x.jsonl > data/g3-x-v2.jsonl`, then edit). Does the direction change? Extract it and check with `compare_vectors.py vectors/<trait>.pt vectors/<yours>.pt`. |
+| **2. Extract directions** | `extract.py` | Which layers are best? Compare against the random-direction column. Rerun with `--seed 1`: is the table stable? On easy traits (French, refusal, sycophancy) every layer hits 100%, so look at separation instead, or try deception and eval awareness, where the layer matters. |
+| **3. Steer** | `steer.py`, `chat.py` | Find the α range between "no effect" and "gibberish." What does negative α do? Which layers work for steering? Is the best layer for *reading* also the best for *writing*? |
+| **4. Probe** | `probe.py` | When does the probe fail? Write your own Q:/A: blocks in `tests/` that should fool it, and some that shouldn't. Q-only blocks get answered by the model, and `--alpha` steers that answer. |
+| **5. Compare vectors** | `compare_vectors.py` | Which directions are similar? Is a confound hiding in yours? Check cosine similarity with `vectors/length.pt` and the other traits. Read the logit lens: it's noisy in early and middle layers and much clearer around `--layer 24`. |
 
-**Group sync (~minute 30):** agree on one layer and one α. Steer with the best vector. Monitor and skeptic: which results would you trust? **Share-out:** one layer table or steered output, plus one surprise.
+**Group sync (~minute 30):** agree on one layer and one α. Steer with the best vector. Tasks 4 and 5: which results would you trust? **Share-out:** one layer table or steered output, plus one surprise.
 
 ## The scripts
 

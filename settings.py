@@ -7,7 +7,7 @@ MODEL = "Qwen/Qwen3.5-4B"
 # steer.py uses alphas [-a, 0, a, 2a]; 2a is usually past the point where the model breaks, on purpose.
 # Layer L means "the residual stream after block L" (1..32). Alpha multiplies the raw difference of means,
 # so alpha 1 = the gap between an average positive and an average negative answer.
-# These are starting points, not answers: the steerer's job is to find better ones.
+# These are starting points, not answers: Task 3 is to find better ones.
 DEFAULTS = {
     "french": (12, 2.0),          # French takes over by alpha 1-2 at layers 8-16; gibberish by 8
     "refusal": (12, 2.0),         # refuses to explain coffee at 2; repetitive loops at 4
