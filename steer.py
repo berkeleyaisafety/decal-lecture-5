@@ -13,9 +13,8 @@ Negative alpha pushes the other way.
 import argparse
 import json
 
-import torch
-
-from interp import generate, load_vector, steering, steering_defaults
+from gpu import generate
+from interp import load_vector, steering_defaults
 
 
 def load_prompts(path):
@@ -46,10 +45,9 @@ def main():
     print(f"Steering with {args.vector} at layer {layer}, alphas {args.alphas}")
 
     for prompt in prompts:
-        torch.manual_seed(args.seed)
-        with steering(layer, direction, args.alphas):  # one batch row per alpha
-            outputs = generate([{"role": "user", "content": prompt}], n=len(args.alphas),
-                               max_new_tokens=args.max_tokens, temperature=args.temperature)
+        outputs = generate([{"role": "user", "content": prompt}], n=len(args.alphas),  # one batch row per alpha
+                           max_new_tokens=args.max_tokens, temperature=args.temperature, seed=args.seed,
+                           steer=(layer, direction, args.alphas))
         print("=" * 88)
         print(f"PROMPT: {prompt}")
         for alpha, text in zip(args.alphas, outputs):

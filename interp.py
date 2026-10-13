@@ -4,6 +4,8 @@ Three places to read:
   1. read_residuals(): a forward hook copies the residual stream out of every block.
   2. fit_direction():  the direction is a difference of means; the probe is "which side of the midpoint are you on".
   3. steering():       a forward hook adds alpha * direction back into the residual stream at one block.
+
+The functions that touch the model run inside a GPU container on Modal; the scripts call them through gpu.py.
 """
 
 import json

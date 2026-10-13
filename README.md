@@ -5,9 +5,20 @@ Pick a trait. Write down what it looks like and what its opposite looks like. Fi
 This is the difference-of-means recipe from the lecture. It's the same one behind the deception probe (Goldowsky-Dill et al.), the refusal direction (Arditi et al.), persona vectors (Chen et al.) and the eval-awareness steering in the Claude Sonnet 4.5 system card.
 
 - **The model** is `Qwen/Qwen3.5-4B`, the same base model you fine-tuned in week 2. This time the weights sit on a GPU we control, so we can read and edit the residual stream as the model runs. Tinker doesn't allow that.
-- **Each group gets one GPU pod.** Open the link your facilitator gives you, then **File → New → Terminal**, then `cd /workspace/decal-lecture-5`. Everyone in the group can open their own terminal on the same pod.
+- **The GPU is on [Modal](https://modal.com).** The scripts run on your laptop. Whenever they need the model, they call a GPU container on Modal (`gpu.py`). No local GPU needed.
 
-Nothing to install. Every command below runs in that terminal.
+## Setup (5 minutes, on your laptop)
+
+```bash
+git clone https://github.com/berkeleyaisafety/decal-lecture-5 && cd decal-lecture-5
+python -m venv .venv && source .venv/bin/activate      # Python 3.12
+pip install -r requirements.txt
+modal setup                                            # log in to Modal in the browser
+```
+
+Your facilitator adds you to the class Modal workspace, where the model is already deployed. Using your own Modal account instead? Run `modal deploy gpu.py` once.
+
+The first command after a break waits about a minute while a GPU container starts. After that, calls are fast. Every command below runs in that terminal.
 
 ## The loop
 
@@ -16,7 +27,7 @@ Nothing to install. Every command below runs in that terminal.
 python inspect_pairs.py data/sycophancy.jsonl
 
 # 2. Find the direction at every layer (under a minute). Prints a layer table, saves vectors/<name>.pt
-#    Name vectors <group>-<trait>-v<N>. Your group shares a pod, so include your initials if several of you extract.
+#    Name vectors <group>-<trait>-v<N>. Vectors are saved on your laptop: send the .pt file (~300 KB) to teammates who want it.
 python extract.py data/sycophancy.jsonl --name g3-syco-v1
 
 # 3. Write with it: the same prompts at several steering strengths, side by side
@@ -87,7 +98,7 @@ Pick one trait as a group, then split the five tasks between you. These are sugg
 
 ## Reading the code
 
-`interp.py` is about 230 lines (much of it comments), and every script is a thin wrapper around it. There are three places to stare at:
+`interp.py` is about 230 lines (much of it comments), and every script is a thin wrapper around it. The parts that touch the model run on the Modal GPU; `gpu.py` is the plumbing that sends them there. There are three places to stare at:
 
 1. `recording()` / `read_residuals()`: a forward hook on each transformer block copies its output (the residual stream) as the model runs. We average it over the answer's tokens, which gives one 2560-dimensional vector per example per layer.
 2. `fit_direction()`: `direction = pos.mean(0) - neg.mean(0)`. That's the whole method. The probe projects onto that direction and checks which side of the midpoint you land on.
@@ -95,8 +106,9 @@ Pick one trait as a group, then split the five tasks between you. These are sugg
 
 ## Troubleshooting
 
-- **`extract.py` is slow at the start:** the first batch warms up the GPU. A full 80-pair extraction takes 20–50 seconds on the pod.
-- **CUDA out of memory:** too many people on one pod are running scripts at once. Every script loads its own copy of the model (~9 GB). Wait for a teammate's run to finish, or close an idle `chat.py`.
+- **The first command takes a minute:** a GPU container is starting and loading the model. Containers shut down after 15 idle minutes. Once one is warm, a full 80-pair extraction takes 20–50 seconds.
+- **`Not logged in to Modal`:** run `modal setup`. **`No Modal app named ...`:** you're in a workspace where nobody has deployed yet. Run `modal deploy gpu.py`, or switch to the class workspace (`modal profile activate <workspace>`).
+- **You edited `interp.py` and nothing changed:** the GPU runs the deployed copy. Run `modal deploy gpu.py` again. In the shared class workspace, that changes it for everyone, so first set your own `MODAL_APP` name in `settings.py`.
 - **Steered output is gibberish:** α is too big for that layer. Halve it. Later layers usually tolerate a bigger α.
 - **No effect from steering:** try a bigger α or an earlier-to-middle layer (10–20). A layer can be good for reading and bad for writing.
 - **`OPENROUTER_API_KEY` not set:** only `gen_pairs.py` and `gen_prompts.py` need it. Run `export OPENROUTER_API_KEY=...` in your terminal.

@@ -2,25 +2,24 @@
 
 ## Before class
 
-1. **Set up RunPod.** Create an account at runpod.io, add credits (prepaid: it can't overspend), and create an API key under Settings → API Keys. The key controls the whole account, so keep it to facilitators.
-2. **~5:15pm: launch the pods.**
+1. **Set up Modal.** Create a workspace at modal.com for the class and invite the students (Settings → Members), or have each group use one member's own account. Set a spending limit under Settings → Usage and Billing.
+2. **Deploy the model once**, from a clone of this repo:
    ```bash
-   export RUNPOD_API_KEY=...
-   python pods.py up --n 8 --repo https://github.com/berkeleyaisafety/decal-lecture-5
-   python pods.py status      # repeat until every pod says "ready" (~3-5 min)
+   pip install -r requirements.txt
+   modal setup                 # log in, then pick the class workspace
+   modal deploy gpu.py         # builds the image (~3 min the first time)
    ```
-   One pod per group, plus a spare. Paste the `status` table into the class chat, or assign group numbers at the door.
-3. **Smoke-test one pod.** Open its URL, then File → New → Terminal, then:
+   The first run downloads the weights into a Modal volume. Later containers load them from there.
+3. **Smoke-test and warm it up** (~15 minutes before class, so the first container is already running):
    ```bash
-   cd /workspace/decal-lecture-5
    python steer.py prompts/steer.txt vectors/french.pt --n 1
    ```
-4. **After class: `python pods.py down`.** Stopped pods still bill for storage, so terminate them. Run `status` afterwards to confirm nothing is left.
+4. **Students** follow README → Setup: install, `modal setup`, then run the scripts on their laptops. They don't deploy anything.
+5. **After class:** nothing to shut down. Idle containers stop after 15 minutes (`SCALEDOWN_WINDOW` in `gpu.py`). Check the Modal dashboard to confirm nothing is still running.
 
-**Cost:** an A40 (48 GB) was $0.59/hr in our test. 9 pods for 2 hours is about $11, so keep at least $15 of credit on the account.
+**Cost:** you pay only while containers are up. Each container is one L40S (`GPU` in `gpu.py`; see modal.com/pricing). One container handles one request at a time, and Modal starts more when several people run scripts at once, up to `MAX_CONTAINERS = 10`. That cap is also the cap on the bill: 10 GPUs for 2 hours at most. `A10G` or `L4` are cheaper and slower.
 
-**Measured on an A40:** setup ~2 min after boot. `extract.py` 20–50 s, `steer.py` (5 prompts × 4 alphas) ~40 s.
-Four scripts at once peaked at 37 of 48 GB of GPU memory, so a group of 5 all running at the same moment is right at the limit.
+**Measured on an A40 (similar speed to an L40S):** `extract.py` 20–50 s, `steer.py` (5 prompts × 4 alphas) ~40 s. Add ~1 minute for a cold start.
 
 ## Code walkthrough (10 min)
 
@@ -36,7 +35,7 @@ Then show `extract.py`'s layer table on one trait, and you're done.
 
 | Time | Facilitator |
 |---|---|
-| 0–5 | Hand out pod URLs. Groups pick a trait and split the five tasks (slides 74–78). Push hesitant groups toward sycophancy or deception, which make the best stories. |
+| 0–5 | Check that everyone's `modal setup` worked (README → Setup). Groups pick a trait and split the five tasks (slides 74–78). Push hesitant groups toward sycophancy or deception, which make the best stories. |
 | 5–30 | Circulate. Ask each person the question for their task from the README table. |
 | 30–38 | Call the group sync: one layer, one α, one best output. |
 | 38–45 | Share-out: about a minute per group, one plot or output plus one surprise. |
@@ -66,8 +65,9 @@ Then show `extract.py`'s layer table on one trait, and you're done.
 
 ## Troubleshooting
 
-- **A pod says "booting" or "setting up" for more than 10 min:** open it anyway and check `/workspace/setup.log`. Usually the model download is slow. If a pod is broken, hand the group the spare.
-- **CUDA out of memory:** each script loads the model (~9 GB). Five students running at once on a 48 GB card is the limit. Ask idle `chat.py` sessions to quit.
+- **Scripts wait a long time before printing anything:** a container is cold-starting (~1 min), or all `MAX_CONTAINERS` are busy and the request is queued. The Modal dashboard shows which. Raise `MAX_CONTAINERS` in `gpu.py` and redeploy if the class is big.
+- **Errors from inside the container:** the Modal dashboard has each container's logs (App → decal-lecture-5 → Model).
+- **A student edited `interp.py` and redeployed:** that changes it for everyone in the workspace. Redeploy from a clean clone. Students who want to change `interp.py` should set their own `MODAL_APP` in `settings.py` first.
 - **The unsteered (α 0) column says something odd:** that's sampling at temperature 0.7. The 4B model sometimes hedges or errs on its own (in one run it called Canberra "a common misconception"). Rerun with `--temperature 0` to compare cleanly. We checked that the α 0 row is unaffected by the other rows in the batch.
-- **Everything is down:** the scripts also run on a Mac with Apple silicon (16 GB or more) or on Colab, just slower: `pip install torch transformers openai`, then the same commands.
+- **Modal is down:** the scripts also run without Modal on a Mac with Apple silicon (16 GB or more), on Colab, or on any CUDA machine, just slower: `export DECAL5_LOCAL=1`, then the same commands.
 - **`gen_pairs.py` needs `OPENROUTER_API_KEY`.** Only Task 1 needs it, so hand out the week 2 key.

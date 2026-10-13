@@ -14,7 +14,8 @@ Commands during the chat:
 
 import argparse
 
-from interp import generate, load, load_vector, steering, steering_defaults
+from gpu import generate, model
+from interp import load_vector, steering_defaults
 
 
 def main():
@@ -30,7 +31,7 @@ def main():
     default_layer, default_alpha = steering_defaults(vec) if vec else (16, 0.0)
     layer = args.layer or default_layer
     alpha = (args.alpha if args.alpha is not None else default_alpha) if vec else 0.0
-    load()
+    model()
     history = []
     print("Type a message, or /alpha N, /layer N, /reset, /quit.")
 
@@ -60,11 +61,8 @@ def main():
             continue
 
         history.append({"role": "user", "content": text})
-        if vec is not None and alpha != 0:
-            with steering(layer, vec["direction"][layer - 1], [alpha]):
-                reply = generate(history, max_new_tokens=args.max_tokens, temperature=args.temperature)[0]
-        else:
-            reply = generate(history, max_new_tokens=args.max_tokens, temperature=args.temperature)[0]
+        steer = (layer, vec["direction"][layer - 1], [alpha]) if vec is not None and alpha != 0 else None
+        reply = generate(history, max_new_tokens=args.max_tokens, temperature=args.temperature, steer=steer)[0]
         history.append({"role": "assistant", "content": reply})
         print(f"\nmodel> {reply}")
 
