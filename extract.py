@@ -20,7 +20,8 @@ import random
 
 import torch
 
-from interp import fit_direction, load_pairs, probe_scores, read_residuals, save_vector
+from gpu import read_residuals
+from interp import fit_direction, load_pairs, probe_scores, save_vector
 from settings import MODEL
 
 BAR_WIDTH = 30

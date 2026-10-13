@@ -3,6 +3,10 @@
 # The model we look inside. Same base model as the week 2 fine-tuning activity, now with the weights on our own GPU.
 MODEL = "Qwen/Qwen3.5-4B"
 
+# The Modal app that runs the model (see gpu.py). Change it if you want your own deployment, e.g. to edit interp.py
+# in a workspace you share with others, then `modal deploy gpu.py`.
+MODAL_APP = "decal-lecture-5"
+
 # Steering defaults per trait: (layer, alpha) that worked in the facilitators' test run (temperature 0).
 # steer.py uses alphas [-a, 0, a, 2a]; 2a is usually past the point where the model breaks, on purpose.
 # Layer L means "the residual stream after block L" (1..32). Alpha multiplies the raw difference of means,

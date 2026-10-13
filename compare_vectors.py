@@ -17,7 +17,8 @@ import os
 
 import torch
 
-from interp import load_vector, logit_lens
+from gpu import logit_lens
+from interp import load_vector
 from settings import DEFAULT_LAYER
 
 

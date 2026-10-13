@@ -1,6 +1,6 @@
-# torch comes preinstalled on the RunPod image. Locally: pip install torch first.
-transformers>=5.19
+# Runs on your laptop. The model itself runs on a Modal GPU (see gpu.py), whose image installs its own packages.
+modal>=1.0
+torch  # CPU is enough: locally torch only does the difference of means and loads/saves vectors
+transformers>=5.19  # only the tokenizer, for inspect_pairs.py
 openai>=1.0
 numpy
-# fast kernels for Qwen3.5's linear-attention layers (CUDA only; without them it still works, just slower)
-flash-linear-attention; sys_platform == "linux"

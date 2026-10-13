@@ -17,9 +17,8 @@ average positive training example, -1 about as negative as an average negative o
 
 import argparse
 
-import torch
-
-from interp import generate, load_vector, probe_scores, read_residuals, read_tokens, steering
+from gpu import generate, read_residuals, read_tokens
+from interp import load_vector, probe_scores
 
 
 def parse_tests(path):
@@ -68,10 +67,8 @@ def main():
 
     for item in items:
         if item["answer"] is None:
-            torch.manual_seed(0)
-            with steering(layer, vec["direction"][layer - 1], [args.alpha]):
-                item["answer"] = generate([{"role": "user", "content": item["question"]}],
-                                          max_new_tokens=args.max_tokens)[0]
+            item["answer"] = generate([{"role": "user", "content": item["question"]}], max_new_tokens=args.max_tokens,
+                                      seed=0, steer=(layer, vec["direction"][layer - 1], [args.alpha]))[0]
             item["label"] = (item["label"] + " " if item["label"] else "") + (
                 f"[model's own answer, alpha {args.alpha:+g}]" if args.alpha else "[model's own answer]")
 
