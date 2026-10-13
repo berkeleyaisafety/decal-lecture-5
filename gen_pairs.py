@@ -88,14 +88,23 @@ def ask(client, model, system, question, keys, attempts=5):
                 model=model,
                 messages=[{"role": "system", "content": system}, {"role": "user", "content": question}],
                 temperature=1.0,
-                max_tokens=1200,
+                max_tokens=4000,  # long traits (pig latin, verbose styles) need room for two answers
             )
-            text = response.choices[0].message.content or ""
+            choice = response.choices[0]
+            text = choice.message.content or ""
             match = re.search(r"\{.*\}", text, re.DOTALL)
-            row = json.loads(match.group(0)) if match else None
+            try:
+                row = json.loads(match.group(0), strict=False) if match else None  # strict=False: allow raw newlines
+            except json.JSONDecodeError:
+                row = None
             if row and all(isinstance(row.get(k), str) and row[k].strip() for k in keys):
                 return {k: row[k].strip() for k in keys}
-            last_error = "reply was not the JSON we asked for"
+            if choice.finish_reason == "length":
+                last_error = "reply was cut off (hit max_tokens)"
+            elif not text.strip():
+                last_error = "empty reply"
+            else:
+                last_error = "reply was not the JSON we asked for"
         except Exception as e:  # network hiccups, rate limits, bad JSON
             last_error = f"{type(e).__name__}: {str(e)[:120]}"
         time.sleep(2**attempt)
@@ -109,7 +118,7 @@ def main():
     parser.add_argument("--n", type=int, default=80, help="number of pairs")
     parser.add_argument("--prompts", nargs="+", default=DEFAULT_PROMPTS, help="question pool(s)")
     parser.add_argument("--model", default=DEFAULT_MODEL, help="OpenRouter model id")
-    parser.add_argument("--concurrency", type=int, default=8)
+    parser.add_argument("--concurrency", type=int, default=20)
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--dry-run", action="store_true", help="print what would be sent instead of calling the API")
     args = parser.parse_args()
